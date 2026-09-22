@@ -1,77 +1,39 @@
-// =============================
+const courseTitle = [
+  "Alchimie élémentaire",
+  "Runes anciennes",
+  "Illusions appliquées",
+];
 
-const academyName = "Astralis";
-let studentCount = 24.3;
-let open = true;
-open = false;
+// const courseTitle: string[] → c'est une liste de strings
 
-studentCount = parseInt("24");
+courseTitle.push("Etude des esprits");
 
-// =============================
+// ===========================================
 
-function add(a: number, b: number): string {
-  return (a + b).toString();
+function double(value: number): number {
+  console.log(value * 2);
+  return value * 2;
 }
 
-function greet(name: string): string {
-  return "Bienvenue " + name;
-}
+double(12);
 
-function greetStudent(name: string, nickname?: string): string {
-  if (nickname) {
-    return `Bienvenue ${name} (${nickname})`;
-  }
-  return `Bienvenue ${name}`;
-}
+const double_ = function (value: number): number {
+  console.log(value * 2);
+  return value * 2;
+};
 
-console.log(greetStudent("Geoffroy"));
-console.log(greetStudent("Geoffroy", "jaimepasjs"));
+const double__ = (value: number): number => {
+  return value * 2;
+};
 
-function calculatePrice(unitPrice: number, quantity: number = 1): number {
-  return unitPrice * quantity;
-}
+const double___ = (value: number): number => value * 2;
 
-calculatePrice(99);
+double_(12);
 
-function courseLabel(title: string, duration: number): string {
-  return `${title} - ${duration.toString()} min`;
-}
+setTimeout(() => {
+  console.log("Hello !");
+}, 5000);
 
-let c;
-
-c = courseLabel("Runes ancienne", 90);
-console.log(c);
-
-c = courseLabel("Alchimie élémentaire", 120);
-console.log(c);
-
-function createCourseSummary(
-  title: string,
-  duration: number,
-  room?: string,
-  compact?: boolean,
-): string | boolean {
-  if (typeof duration != "number") {
-    console.error("ATTENTION LE TYPE DE DURATION DOIT ETRE Number");
-    return false;
-  }
-
-  if (compact) {
-    return `${title} · ${duration}m`;
-  }
-
-  let summary = `${title} - ${duration} min`;
-
-  if (room) {
-    summary += " - " + room;
-  }
-
-  return summary;
-}
-
-c = createCourseSummary("Runes anciennes", 90);
-console.log(c);
-c = createCourseSummary("Alchimie élémentaire", 120, "Laboratoire");
-console.log(c);
-c = createCourseSummary("Runes anciennes", "90", "", true);
-console.log(c);
+setTimeout(() => {
+  console.log("Bonjour après 5 secondes !");
+}, 5000);
