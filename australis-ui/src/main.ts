@@ -1,55 +1,19 @@
-const courses = [
-  {
-    id: 1,
-    title: "Runes anciennes",
-    duration: 90,
-    available: true,
-  },
-  {
-    id: 2,
-    title: "alchimie élEmentairE",
-    duration: 120,
-    available: false,
-  },
-  {
-    id: 3,
-    title: "Illusions appliquées",
-    duration: 75,
-    available: true,
-  },
-  {
-    id: 4,
-    title: "Enchantements défensifs",
-    duration: 105,
-    available: true,
-  },
-];
+import { type Student } from "./models/student";
+import type { Enrollment } from "./models/enrollement";
 
-function courseLabelById(id: number): string {
-  const course = courses.find((course) => course.id === id);
+const student: Student = {
+  id: 1,
+  name: "Mira",
+  level: 2,
+};
 
-  if (!course) {
-    return "Cours introuvable";
-  }
-
-  return course.title + " - " + course.duration + " min";
+function displayStudent(student: Student): void {
+  console.log(student.name, student.level);
 }
 
-const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+displayStudent(student);
 
-function getCourseTitlesFrom(minDuration: number): string[] {
-  return courses
-    .filter((c) => c.duration >= minDuration)
-    .map((c) => capitalize(c.title.toLowerCase()));
-}
+let selectedCourseId: number | null = null;
 
-let c;
-
-c = courseLabelById(2);
-console.log(c);
-
-c = courseLabelById(99);
-console.log(c);
-
-c = getCourseTitlesFrom(100);
-console.log(c);
+// Crééz un cours
+// Associez l'étudiant au cours - status pending
