@@ -57,8 +57,33 @@ const courses = [
 // });
 
 const titles: string[] = courses.map((course) => course.title.toUpperCase());
-
+const ids: string[] = courses.map((course) => course.id.toString());
 // Extraire un tableau avec les id convertis en string
 // .toString()
 
 console.log(titles);
+console.log(ids);
+
+const longCourses = courses.filter((course) => course.duration >= 90);
+
+console.log(longCourses);
+
+// map    → transforme chaque élément (string, number, objets, etc.) du tableau
+// filter → conserve certains éléments
+// find   → trouve certains éléments
+
+const specificCourse = courses.find((course) => course.id === 2);
+
+console.log(specificCourse);
+
+const longCourseTitle = courses
+  .filter((course) => course.duration >= 90)
+  .map((course) => course.title.toUpperCase());
+
+// Créé un nouveau tableau
+// Qui stocke certains éléments
+// Puis applique une transformation sur ces éléments
+
+// TODO : Reduce
+
+console.log(longCourseTitle);
