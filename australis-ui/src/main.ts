@@ -110,12 +110,17 @@ function displayStudent({
   name: string;
   level: number;
 }): void {
-  console.log(name, student);
+  console.log(name, level);
 }
 
-function displayStudent2(name: string, level: number): void {
-  console.log(name, student);
-}
-
-displayStudent2(student.name, student.level);
 displayStudent(student);
+
+// --- VS ---
+
+// function displayStudent2(name: string, level: number): void {
+//   console.log(name, level);
+// }
+
+// displayStudent2(student.name, student.level);
+
+// TODO : ...
