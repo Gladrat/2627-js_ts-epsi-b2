@@ -11,29 +11,54 @@ courseTitle.push("Etude des esprits");
 // ===========================================
 
 function double(value: number): number {
-  console.log(value * 2);
   return value * 2;
 }
 
-double(12);
+// const double_ = function (value: number): number {
+//   return value * 2;
+// };
 
-const double_ = function (value: number): number {
-  console.log(value * 2);
-  return value * 2;
-};
-
-const double__ = (value: number): number => {
-  return value * 2;
-};
+// const double__ = (value: number): number => {
+//   return value * 2;
+// };
 
 const double___ = (value: number): number => value * 2;
 
-double_(12);
+// setTimeout(() => {
+//   console.log("Hello !");
+// }, 5000);
 
-setTimeout(() => {
-  console.log("Hello !");
-}, 5000);
+// setTimeout(() => {
+//   console.log("Bonjour après 5 secondes !");
+// }, 5000);
 
-setTimeout(() => {
-  console.log("Bonjour après 5 secondes !");
-}, 5000);
+const courses = [
+  {
+    id: 1,
+    title: "Runes anciennes",
+    duration: 90,
+  },
+  {
+    id: 2,
+    title: "Alchimie élémentaire",
+    duration: 120,
+  },
+  {
+    id: 3,
+    title: "Illusions appliquées",
+    duration: 75,
+  },
+];
+
+// Ok c'est pareil que en dessous mais on écrira pas ça
+
+// const titles: string[] = courses.map((course) => {
+//   return course.title.toUpperCase();
+// });
+
+const titles: string[] = courses.map((course) => course.title.toUpperCase());
+
+// Extraire un tableau avec les id convertis en string
+// .toString()
+
+console.log(titles);
