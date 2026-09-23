@@ -1,5 +1,6 @@
 import { type Student } from "./models/student";
 import type { Enrollment } from "./models/enrollement";
+import type { Course } from "./models/course";
 
 const student: Student = {
   id: 1,
@@ -15,5 +16,16 @@ displayStudent(student);
 
 let selectedCourseId: number | null = null;
 
-// Crééz un cours
-// Associez l'étudiant au cours - status pending
+const course: Course = {
+  id: 1,
+  title: "Alchimie élémentaire",
+  duration: 90,
+  available: true,
+};
+
+const enrollment: Enrollment = {
+  id: 99,
+  course, //     → course: course,
+  student, //    → student: student,
+  status: "pending",
+};
