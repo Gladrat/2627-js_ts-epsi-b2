@@ -1,126 +1,55 @@
-const courseTitle = [
-  "Alchimie élémentaire",
-  "Runes anciennes",
-  "Illusions appliquées",
-];
-
-// const courseTitle: string[] → c'est une liste de strings
-
-courseTitle.push("Etude des esprits");
-
-// ===========================================
-
-function double(value: number): number {
-  return value * 2;
-}
-
-// const double_ = function (value: number): number {
-//   return value * 2;
-// };
-
-// const double__ = (value: number): number => {
-//   return value * 2;
-// };
-
-const double___ = (value: number): number => value * 2;
-
-// setTimeout(() => {
-//   console.log("Hello !");
-// }, 5000);
-
-// setTimeout(() => {
-//   console.log("Bonjour après 5 secondes !");
-// }, 5000);
-
 const courses = [
   {
     id: 1,
     title: "Runes anciennes",
     duration: 90,
+    available: true,
   },
   {
     id: 2,
-    title: "Alchimie élémentaire",
+    title: "alchimie élEmentairE",
     duration: 120,
+    available: false,
   },
   {
     id: 3,
     title: "Illusions appliquées",
     duration: 75,
+    available: true,
+  },
+  {
+    id: 4,
+    title: "Enchantements défensifs",
+    duration: 105,
+    available: true,
   },
 ];
 
-// Ok c'est pareil que en dessous mais on écrira pas ça
+function courseLabelById(id: number): string {
+  const course = courses.find((course) => course.id === id);
 
-// const titles: string[] = courses.map((course) => {
-//   return course.title.toUpperCase();
-// });
+  if (!course) {
+    return "Cours introuvable";
+  }
 
-const titles: string[] = courses.map((course) => course.title.toUpperCase());
-const ids: string[] = courses.map((course) => course.id.toString());
-// Extraire un tableau avec les id convertis en string
-// .toString()
-
-console.log(titles);
-console.log(ids);
-
-const longCourses = courses.filter((course) => course.duration >= 90);
-
-console.log(longCourses);
-
-// map    → transforme chaque élément (string, number, objets, etc.) du tableau
-// filter → conserve certains éléments
-// find   → trouve certains éléments
-
-const specificCourse = courses.find((course) => course.id === 2);
-
-console.log(specificCourse);
-
-const longCourseTitle = courses
-  .filter((course) => course.duration >= 90)
-  .map((course) => course.title.toUpperCase());
-
-// Créé un nouveau tableau
-// Qui stocke certains éléments
-// Puis applique une transformation sur ces éléments
-
-// TODO : Reduce
-
-console.log(longCourseTitle);
-
-// ========== DESTRUCTURING ==========
-
-const student = {
-  id: 1,
-  name: "Mira",
-  level: 2,
-};
-
-// Extrayez le nom et le niveau dans deux variables
-
-// const name = student.name;
-// const level = student.level;
-
-const { name, level } = student;
-
-function displayStudent({
-  name,
-  level,
-}: {
-  name: string;
-  level: number;
-}): void {
-  console.log(name, level);
+  return course.title + " - " + course.duration + " min";
 }
 
-displayStudent(student);
+const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
-// --- VS ---
+function getCourseTitlesFrom(minDuration: number): string[] {
+  return courses
+    .filter((c) => c.duration >= minDuration)
+    .map((c) => capitalize(c.title.toLowerCase()));
+}
 
-// function displayStudent2(name: string, level: number): void {
-//   console.log(name, level);
-// }
+let c;
 
-// displayStudent2(student.name, student.level);
+c = courseLabelById(2);
+console.log(c);
 
-// TODO : ...
+c = courseLabelById(99);
+console.log(c);
+
+c = getCourseTitlesFrom(100);
+console.log(c);
