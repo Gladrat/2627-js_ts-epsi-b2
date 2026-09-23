@@ -95,3 +95,27 @@ const student = {
   name: "Mira",
   level: 2,
 };
+
+// Extrayez le nom et le niveau dans deux variables
+
+// const name = student.name;
+// const level = student.level;
+
+const { name, level } = student;
+
+function displayStudent({
+  name,
+  level,
+}: {
+  name: string;
+  level: number;
+}): void {
+  console.log(name, student);
+}
+
+function displayStudent2(name: string, level: number): void {
+  console.log(name, student);
+}
+
+displayStudent2(student.name, student.level);
+displayStudent(student);
