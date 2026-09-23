@@ -87,3 +87,11 @@ const longCourseTitle = courses
 // TODO : Reduce
 
 console.log(longCourseTitle);
+
+// ========== DESTRUCTURING ==========
+
+const student = {
+  id: 1,
+  name: "Mira",
+  level: 2,
+};
