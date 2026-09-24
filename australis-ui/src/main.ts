@@ -3,6 +3,7 @@ import type { Course } from "./models/course";
 
 const app = document.querySelector("#app");
 const h1 = document.querySelector("h1");
+const courseMessage = document.querySelector("#course-message");
 // document.querySelectorAll()
 
 if (!app) {
@@ -18,6 +19,10 @@ titleDirection.textContent = "Directrice: Maÿlis Dubois";
 h1.after(titleDirection);
 
 function renderCourse(course: Course): HTMLElement {
+  if (!courseMessage) {
+    throw new Error("#course-message est introuvable");
+  }
+
   const article = document.createElement("article");
 
   const title = document.createElement("h3");
@@ -30,7 +35,7 @@ function renderCourse(course: Course): HTMLElement {
   button.textContent = "Voir le cours";
 
   button.addEventListener("click", (event) => {
-    console.log(course.id, course.title);
+    courseMessage.textContent = `${course.title} - ${course.available ? "Accès ouvert" : "Cours indisponible"}`;
     // event.target.parentElement.remove()
   });
 
