@@ -2,11 +2,14 @@ import { courses } from "./data/coursesData";
 import type { Course } from "./models/course";
 import type { Student } from "./models/student";
 
+const students: Student[] = [];
+
 const app = document.querySelector("#app");
 const h1 = document.querySelector("h1");
 const courseMessage = document.querySelector("#course-message");
 const form = document.querySelector("#student-form");
-const nameInput: HTMLInputElement | null = document.querySelector("#student-name");
+const nameInput: HTMLInputElement | null =
+  document.querySelector("#student-name");
 
 if (!app) {
   throw new Error("#app est introuvable");
@@ -18,6 +21,10 @@ if (!h1) {
 
 if (!form) {
   throw new Error("#student-form est introuvable");
+}
+
+if (!nameInput) {
+  throw new Error("nameInput est introuvable");
 }
 
 const titleDirection = document.createElement("h2");
@@ -53,3 +60,23 @@ function renderCourse(course: Course): HTMLElement {
 for (const course of courses) {
   app.append(renderCourse(course));
 }
+
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  console.log(nameInput.value);
+
+  const student: Student = {
+    id: Date.now(),
+    name: nameInput.value,
+    level: 1,
+  };
+
+  students.push(student);
+  console.log(students);
+
+  nameInput.value = "";
+  nameInput.focus();
+});
+
+// Créer la fonction renderStudents
