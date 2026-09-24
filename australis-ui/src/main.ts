@@ -1,5 +1,6 @@
 import { courses } from "./data/coursesData";
 import type { Course } from "./models/course";
+import type { Student } from "./models/student";
 
 const app = document.querySelector("#app");
 const h1 = document.querySelector("h1");
