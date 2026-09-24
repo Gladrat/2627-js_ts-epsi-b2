@@ -27,15 +27,17 @@ function renderCourse(course: Course): HTMLElement {
   duration.textContent = course.duration + " min";
 
   const button = document.createElement("button");
-  button.textContent = "Voir le cours";
+  button.textContent = "Supprimer";
 
-  button.addEventListener("click", () => {
-    console.log(`Détails du cours (${course.id})`, course.title);
-  });
+  button.addEventListener("click", deleteCourse);
 
   article.append(title, duration, button);
 
   return article;
+}
+
+function deleteCourse(event) {
+  console.log(event.target.parentElement.remove())
 }
 
 for (const course of courses) {
