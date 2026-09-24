@@ -2,7 +2,7 @@ import { courses } from "./data/coursesData";
 import type { Course } from "./models/course";
 import type { Student } from "./models/student";
 
-const students: Student[] = [];
+const students: Student[] = []; // Etat (state)
 
 const app = document.querySelector("#app");
 const h1 = document.querySelector("h1");
@@ -10,6 +10,7 @@ const courseMessage = document.querySelector("#course-message");
 const form = document.querySelector("#student-form");
 const nameInput: HTMLInputElement | null =
   document.querySelector("#student-name");
+const studentsList = document.querySelector("#students"); // Représentation (élément HTML)
 
 if (!app) {
   throw new Error("#app est introuvable");
@@ -75,8 +76,26 @@ form.addEventListener("submit", (event) => {
   students.push(student);
   console.log(students);
 
+  renderStudents()
+
   nameInput.value = "";
   nameInput.focus();
 });
 
-// Créer la fonction renderStudents
+// Créer la fonction renderStudents (id, nom, niveau)
+function renderStudents(): void {
+  
+  if (!studentsList) {
+    throw new Error("studentsList est introuvable");
+  }
+
+  studentsList.innerHTML = ""
+
+  for (const student of students) {
+    const p = document.createElement("p");
+
+    p.textContent = `(${student.id}) ${student.name} - Niveau: ${student.level}`;
+
+    studentsList.append(p)
+  }
+}
