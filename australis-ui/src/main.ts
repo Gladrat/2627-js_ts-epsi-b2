@@ -1,5 +1,7 @@
+import { courses } from "./data/coursesData";
+
 const app = document.querySelector("#app");
-const h1 = document.querySelector("h1")
+const h1 = document.querySelector("h1");
 // document.querySelectorAll()
 
 if (!app) {
@@ -13,5 +15,5 @@ if (!h1) {
 app.textContent = "Lorem ipsum";
 
 const titleDirection = document.createElement("h2");
-titleDirection.textContent = "Directrice: Maÿlis Dubois"
+titleDirection.textContent = "Directrice: Maÿlis Dubois";
 h1.after(titleDirection);
