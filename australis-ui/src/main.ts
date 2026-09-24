@@ -5,7 +5,8 @@ import type { Student } from "./models/student";
 const app = document.querySelector("#app");
 const h1 = document.querySelector("h1");
 const courseMessage = document.querySelector("#course-message");
-// document.querySelectorAll()
+const form = document.querySelector("#student-form");
+const nameInput: HTMLInputElement | null = document.querySelector("#student-name");
 
 if (!app) {
   throw new Error("#app est introuvable");
@@ -13,6 +14,10 @@ if (!app) {
 
 if (!h1) {
   throw new Error("h1 est introuvable");
+}
+
+if (!form) {
+  throw new Error("#student-form est introuvable");
 }
 
 const titleDirection = document.createElement("h2");
