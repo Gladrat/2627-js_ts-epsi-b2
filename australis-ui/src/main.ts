@@ -1,31 +1,14 @@
-import { type Student } from "./models/student";
-import type { Enrollment } from "./models/enrollement";
-import type { Course } from "./models/course";
+const app = document.querySelector("#app");
+// document.querySelectorAll()
 
-const student: Student = {
-  id: 1,
-  name: "Mira",
-  level: 2,
-};
-
-function displayStudent(student: Student): void {
-  console.log(student.name, student.level);
+if (!app) {
+  throw new Error("#app est introuvable");
 }
 
-displayStudent(student);
+app.textContent = "Lorem ipsum";
 
-let selectedCourseId: number | null = null;
+const titleDirection = document.createElement("h2");
+titleDirection.textContent = "Directrice: Maÿlis Dubois"
+app.append(titleDirection);
 
-const course: Course = {
-  id: 1,
-  title: "Alchimie élémentaire",
-  duration: 90,
-  available: true,
-};
-
-const enrollment: Enrollment = {
-  id: 99,
-  course, //     → course: course,
-  student, //    → student: student,
-  status: "pending",
-};
+// Chercher sur le Web comment insérer notre h2 juste après le h1
