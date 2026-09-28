@@ -2,7 +2,7 @@ import { courses } from "./data/coursesData";
 import type { Course } from "./models/course";
 import type { Student } from "./models/student";
 
-const students: Student[] = []; // Etat (state)
+let students: Student[] = [{ id: 1, name: "Geoffroy", level: 3 }]; // Etat (state)
 
 const app = document.querySelector("#app");
 const h1 = document.querySelector("h1");
@@ -50,7 +50,6 @@ function renderCourse(course: Course): HTMLElement {
 
   button.addEventListener("click", (event) => {
     courseMessage.textContent = `${course.title} - ${course.available ? "Accès ouvert" : "Cours indisponible"}`;
-    // event.target.parentElement.remove()
   });
 
   article.append(title, duration, button);
@@ -58,8 +57,16 @@ function renderCourse(course: Course): HTMLElement {
   return article;
 }
 
-for (const course of courses) {
-  app.append(renderCourse(course));
+function renderCourses(): void {
+  if (!app) {
+    throw new Error("#app est introuvable");
+  }
+
+  app.innerHTML = "";
+
+  for (const course of courses) {
+    app.append(renderCourse(course));
+  }
 }
 
 form.addEventListener("submit", (event) => {
@@ -73,29 +80,43 @@ form.addEventListener("submit", (event) => {
     level: 1,
   };
 
-  students.push(student);
+  students = [...students, student];
   console.log(students);
 
-  renderStudents()
+  renderStudents();
 
   nameInput.value = "";
   nameInput.focus();
 });
 
-// Créer la fonction renderStudents (id, nom, niveau)
 function renderStudents(): void {
-  
   if (!studentsList) {
     throw new Error("studentsList est introuvable");
   }
 
-  studentsList.innerHTML = ""
+  studentsList.innerHTML = "";
 
   for (const student of students) {
     const p = document.createElement("p");
 
     p.textContent = `(${student.id}) ${student.name} - Niveau: ${student.level}`;
 
-    studentsList.append(p)
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Supprimer";
+
+    deleteButton.addEventListener("click", () => {
+      students = students.filter(
+        (currentStudent) => currentStudent.id !== student.id,
+      );
+
+      renderStudents();
+    });
+
+    p.append(deleteButton);
+
+    studentsList.append(p);
   }
 }
+
+renderCourses();
+renderStudents();
