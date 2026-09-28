@@ -26,5 +26,5 @@
   },
   "include": [
     "src"
-  ]
+, "exercices/1-exercice.ts", "exercices/1-js-ts-contrat.ts", "exercices/2-collections.ts", "exercices/2-exercice.ts", "exercices/3-typage.ts"  ]
 }

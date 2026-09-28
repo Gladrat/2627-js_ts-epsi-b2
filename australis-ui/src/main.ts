@@ -1,13 +1,16 @@
 import { courses } from "./data/coursesData";
+
 import type { Course } from "./models/course";
 import type { Student } from "./models/student";
+
+import { renderCourse } from "./ui/course";
 
 let students: Student[] = [{ id: 1, name: "Geoffroy", level: 3 }]; // Etat (state)
 let courseFilter = ""; // state du filtre des cours
 
 const app = document.querySelector("#app");
 const h1 = document.querySelector("h1");
-const courseMessage = document.querySelector("#course-message");
+
 const form = document.querySelector("#student-form");
 const nameInput: HTMLInputElement | null =
   document.querySelector("#student-name");
@@ -40,36 +43,14 @@ h1.after(titleDirection);
 
 // COURSES
 
-function renderCourse(course: Course): HTMLElement {
-  if (!courseMessage) {
-    throw new Error("#course-message est introuvable");
-  }
 
-  const article = document.createElement("article");
-
-  const title = document.createElement("h3");
-  title.textContent = course.title;
-
-  const duration = document.createElement("p");
-  duration.textContent = course.duration + " min";
-
-  const button = document.createElement("button");
-  button.textContent = "Voir le cours";
-
-  courseMessage.textContent = `${course.title} - ${course.available ? "Accès ouvert" : "Cours indisponible"}`;
-  button.addEventListener("click", (event) => {});
-
-  article.append(title, duration, button);
-
-  return article;
-}
 
 filterInput.addEventListener("input", () => {
   courseFilter = filterInput.value;
 
   console.log("Mise à jour du filtre:", courseFilter);
 
-  // renderCourses();
+  renderCourses();
 });
 
 //State dérivé
@@ -91,13 +72,16 @@ function renderCourses(): void {
   }
 }
 
-setInterval(() => {
-  console.log("RENDU DE LA LISTE DES COURS");
+// let i = 0;
 
-  renderCourses();
-}, 3000);
+// setInterval(() => {
+//   i++;
+//   console.log("RENDU, n°", i, "DE LA LISTE DES COURS");
 
-// STUDENTS
+//   renderCourses();
+// }, 5000);
+
+// // STUDENTS
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();

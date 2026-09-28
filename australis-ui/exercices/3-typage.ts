@@ -1,6 +1,6 @@
-import { type Student } from "./models/student";
-import type { Enrollment } from "./models/enrollement";
-import type { Course } from "./models/course";
+import { type Student } from "../src/models/student";
+import type { Enrollment } from "../src/models/enrollement";
+import type { Course } from "../src/models/course";
 
 const student: Student = {
   id: 1,
