@@ -1,9 +1,13 @@
-import { courses } from "./data/coursesData";
+import { loadCourses } from "./data/coursesData";
 
 import type { Course } from "./models/course";
 import type { Student } from "./models/student";
 
 import { renderCourse } from "./ui/course";
+
+let courses = await loadCourses();
+
+// LES TRAVAUX
 
 let students: Student[] = [{ id: 1, name: "Geoffroy", level: 3 }]; // Etat (state)
 let courseFilter = ""; // state du filtre des cours
@@ -42,8 +46,6 @@ titleDirection.textContent = "Directrice: Maÿlis Dubois";
 h1.after(titleDirection);
 
 // COURSES
-
-
 
 filterInput.addEventListener("input", () => {
   courseFilter = filterInput.value;
