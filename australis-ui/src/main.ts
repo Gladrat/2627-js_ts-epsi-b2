@@ -3,6 +3,7 @@ import type { Course } from "./models/course";
 import type { Student } from "./models/student";
 
 let students: Student[] = [{ id: 1, name: "Geoffroy", level: 3 }]; // Etat (state)
+let courseFilter = ""; // state du filtre des cours
 
 const app = document.querySelector("#app");
 const h1 = document.querySelector("h1");
@@ -11,6 +12,7 @@ const form = document.querySelector("#student-form");
 const nameInput: HTMLInputElement | null =
   document.querySelector("#student-name");
 const studentsList = document.querySelector("#students"); // Représentation (élément HTML)
+const filterInput = document.querySelector<HTMLInputElement>("#course-filter");
 
 if (!app) {
   throw new Error("#app est introuvable");
@@ -28,9 +30,15 @@ if (!nameInput) {
   throw new Error("nameInput est introuvable");
 }
 
+if (!filterInput) {
+  throw new Error("filterInput est introuvable");
+}
+
 const titleDirection = document.createElement("h2");
 titleDirection.textContent = "Directrice: Maÿlis Dubois";
 h1.after(titleDirection);
+
+// COURSES
 
 function renderCourse(course: Course): HTMLElement {
   if (!courseMessage) {
@@ -48,13 +56,27 @@ function renderCourse(course: Course): HTMLElement {
   const button = document.createElement("button");
   button.textContent = "Voir le cours";
 
-  button.addEventListener("click", (event) => {
-    courseMessage.textContent = `${course.title} - ${course.available ? "Accès ouvert" : "Cours indisponible"}`;
-  });
+  courseMessage.textContent = `${course.title} - ${course.available ? "Accès ouvert" : "Cours indisponible"}`;
+  button.addEventListener("click", (event) => {});
 
   article.append(title, duration, button);
 
   return article;
+}
+
+filterInput.addEventListener("input", () => {
+  courseFilter = filterInput.value;
+
+  console.log("Mise à jour du filtre:", courseFilter);
+
+  // renderCourses();
+});
+
+//State dérivé
+function getVisibleCourses(): Course[] {
+  return courses.filter((course) =>
+    course.title.toLocaleLowerCase().includes(courseFilter.toLocaleLowerCase()),
+  );
 }
 
 function renderCourses(): void {
@@ -64,10 +86,18 @@ function renderCourses(): void {
 
   app.innerHTML = "";
 
-  for (const course of courses) {
+  for (const course of getVisibleCourses()) {
     app.append(renderCourse(course));
   }
 }
+
+setInterval(() => {
+  console.log("RENDU DE LA LISTE DES COURS");
+
+  renderCourses();
+}, 3000);
+
+// STUDENTS
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
