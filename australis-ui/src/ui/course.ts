@@ -18,8 +18,9 @@ export function renderCourse(course: Course): HTMLElement {
   const button = document.createElement("button");
   button.textContent = "Voir le cours";
 
-  courseMessage.textContent = `${course.title} - ${course.available ? "Accès ouvert" : "Cours indisponible"}`;
-  button.addEventListener("click", (event) => {});
+  button.addEventListener("click", () => {
+    courseMessage.textContent = `${course.title} - ${course.available ? "Accès ouvert" : "Cours indisponible"}`;
+  });
 
   article.append(title, duration, button);
 
