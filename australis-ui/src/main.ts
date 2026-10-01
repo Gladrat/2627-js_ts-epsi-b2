@@ -7,8 +7,6 @@ import { renderCourse } from "./ui/course";
 
 let courses = await loadCourses();
 
-// LES TRAVAUX
-
 let students: Student[] = [{ id: 1, name: "Geoffroy", level: 3 }]; // Etat (state)
 let courseFilter = ""; // state du filtre des cours
 
@@ -18,7 +16,7 @@ const h1 = document.querySelector("h1");
 const form = document.querySelector("#student-form");
 const nameInput: HTMLInputElement | null =
   document.querySelector("#student-name");
-const studentsList = document.querySelector("#students"); // Représentation (élément HTML)
+const studentsList = document.querySelector("#students");
 const filterInput = document.querySelector<HTMLInputElement>("#course-filter");
 
 if (!app) {
@@ -45,7 +43,7 @@ const titleDirection = document.createElement("h2");
 titleDirection.textContent = "Directrice: Maÿlis Dubois";
 h1.after(titleDirection);
 
-// COURSES
+// ============== COURSES ==============
 
 filterInput.addEventListener("input", () => {
   courseFilter = filterInput.value;
@@ -74,16 +72,7 @@ function renderCourses(): void {
   }
 }
 
-// let i = 0;
-
-// setInterval(() => {
-//   i++;
-//   console.log("RENDU, n°", i, "DE LA LISTE DES COURS");
-
-//   renderCourses();
-// }, 5000);
-
-// // STUDENTS
+// ============== STUDENTS ==============
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
