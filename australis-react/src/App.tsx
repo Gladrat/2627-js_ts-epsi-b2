@@ -51,7 +51,8 @@ function CourseCard({ course, onSelect }: CourseCardProps) {
       <p>{course.duration} min</p>
       {course.available ? <p>Disponible</p> : <p>Indisponible</p>}
       {course.description && <p>{course.description}</p>}
-      <button type="button" onClick={() => onSelect(course.id)}>Voir le cours</button>
+      <button type="button" onClick={() => console.log("SELECT !")
+      }>Voir le cours</button>
     </article>
   );
 }
@@ -66,7 +67,7 @@ function App() {
           <CourseCard
             course={c}
             onSelect={(courseId) => {
-              console.log("Sélection:", courseId);
+              console.log("Sélection:");
             }}
           />
         ))}
