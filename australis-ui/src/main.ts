@@ -5,19 +5,31 @@ import type { Student } from "./models/student";
 
 import { renderCourse } from "./ui/course";
 
+// ============== DATAS ==============
+
 let courses = await loadCourses();
 
-let students: Student[] = [{ id: 1, name: "Geoffroy", level: 3 }]; // Etat (state)
-let courseFilter = ""; // state du filtre des cours
+// ============== ETATS (STATE) ==============
+
+let students: Student[] = [{ id: 1, name: "Geoffroy", level: 3 }];
+let courseFilter = "";
+let selectedCourseId: number | null = null;
 
 const app = document.querySelector("#app");
 const h1 = document.querySelector("h1");
+
+// ============== DOM ==============
 
 const form = document.querySelector("#student-form");
 const nameInput: HTMLInputElement | null =
   document.querySelector("#student-name");
 const studentsList = document.querySelector("#students");
 const filterInput = document.querySelector<HTMLInputElement>("#course-filter");
+const courseDetails = document.querySelector("#course-details");
+
+if (!courseDetails) {
+  throw new Error("Zone de détail introuvable");
+}
 
 if (!app) {
   throw new Error("#app est introuvable");
@@ -60,6 +72,30 @@ function getVisibleCourses(): Course[] {
   );
 }
 
+function getSelectedCourse(): Course | undefined {
+  return courses.find((course) => course.id === selectedCourseId);
+}
+
+const renderCourseDetails = (): void => {
+  courseDetails.innerHTML = "";
+
+  const course = getSelectedCourse();
+
+  if (!course) {
+    return;
+  }
+
+  const title = document.createElement("h2");
+
+  title.textContent = course.title;
+
+  const duration = document.createElement("p");
+
+  duration.textContent = course.duration + " min";
+
+  courseDetails.append(title, duration);
+};
+
 function renderCourses(): void {
   if (!app) {
     throw new Error("#app est introuvable");
@@ -68,7 +104,12 @@ function renderCourses(): void {
   app.innerHTML = "";
 
   for (const course of getVisibleCourses()) {
-    app.append(renderCourse(course));
+    app.append(
+      renderCourse(course, () => {
+        selectedCourseId = course.id;
+        renderCourseDetails();
+      }),
+    );
   }
 }
 
@@ -122,6 +163,8 @@ function renderStudents(): void {
     studentsList.append(p);
   }
 }
+
+// ============== RENDER (main) ==============
 
 renderCourses();
 renderStudents();

@@ -1,12 +1,9 @@
 import type { Course } from "../models/course";
 
-export function renderCourse(course: Course): HTMLElement {
-  const courseMessage = document.querySelector("#course-message");
-
-  if (!courseMessage) {
-    throw new Error("#course-message est introuvable");
-  }
-
+export function renderCourse(
+  course: Course,
+  onSelect: (courseId: number) => void,
+): HTMLElement {
   const article = document.createElement("article");
 
   const title = document.createElement("h3");
@@ -19,7 +16,7 @@ export function renderCourse(course: Course): HTMLElement {
   button.textContent = "Voir le cours";
 
   button.addEventListener("click", () => {
-    courseMessage.textContent = `${course.title} - ${course.available ? "Accès ouvert" : "Cours indisponible"}`;
+    onSelect(course.id);
   });
 
   article.append(title, duration, button);
