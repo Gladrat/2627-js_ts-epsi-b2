@@ -8,6 +8,7 @@ type Course = {
 
 type CourseCardProps = {
   course: Course;
+  onSelect: (courseId: number) => void;
 };
 
 const courses: Course[] = [
@@ -43,13 +44,14 @@ function Header() {
   );
 }
 
-function CourseCard({ course }: CourseCardProps) {
+function CourseCard({ course, onSelect }: CourseCardProps) {
   return (
     <article>
       <h2>{course.title}</h2>
       <p>{course.duration} min</p>
       {course.available ? <p>Disponible</p> : <p>Indisponible</p>}
       {course.description && <p>{course.description}</p>}
+      <button type="button" onClick={() => onSelect(course.id)}>Voir le cours</button>
     </article>
   );
 }
@@ -61,7 +63,12 @@ function App() {
       <main>
         <h1>Académie Astralis</h1>
         {courses.map((c) => (
-          <CourseCard course={c} />
+          <CourseCard
+            course={c}
+            onSelect={(courseId) => {
+              console.log("Sélection:", courseId);
+            }}
+          />
         ))}
       </main>
     </>
