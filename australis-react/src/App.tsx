@@ -58,14 +58,9 @@ function App() {
       <Header />
       <main>
         <h1>Académie Astralis</h1>
-        <CourseCard
-          course={{
-            id: 1,
-            title: "Runes",
-            duration: 90,
-            available: true,
-          }}
-        />
+        {courses.map((course) => (
+          <CourseCard course={course} />
+        ))}
       </main>
     </>
   );
