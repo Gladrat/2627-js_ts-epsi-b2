@@ -3,6 +3,7 @@ type Course = {
   title: string;
   duration: number;
   available: boolean;
+  description?: string;
 };
 
 type CourseCardProps = {
@@ -47,7 +48,8 @@ function CourseCard({ course }: CourseCardProps) {
     <article>
       <h2>{course.title}</h2>
       <p>{course.duration} min</p>
-      <p>{course.available ? "Disponible" : "Indisponible"}</p>
+      {course.available ? <p>Disponible</p> : <p>Indisponible</p>}
+      {course.description && <p>{course.description}</p>}
     </article>
   );
 }
@@ -58,8 +60,8 @@ function App() {
       <Header />
       <main>
         <h1>Académie Astralis</h1>
-        {courses.map((course) => (
-          <CourseCard course={course} />
+        {courses.map((c) => (
+          <CourseCard course={c} />
         ))}
       </main>
     </>
