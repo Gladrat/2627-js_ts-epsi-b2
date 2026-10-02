@@ -1,4 +1,4 @@
-# Exercice 2 — Catalogue réutilisable
+# Exercice 2 - Catalogue réutilisable
 
 Construire :
 
