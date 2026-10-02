@@ -11,6 +11,7 @@ export function renderCourse(
 
   const duration = document.createElement("p");
   duration.textContent = course.duration + " min";
+  duration.style.color = "red";
 
   const button = document.createElement("button");
   button.textContent = "Voir le cours";
